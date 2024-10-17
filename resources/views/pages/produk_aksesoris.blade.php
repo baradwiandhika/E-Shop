@@ -31,6 +31,7 @@
                     @foreach ($aksesoris as $index => $item)
                         <tr>
                             <td>{{ $item['name'] }}</td>
+                            <td>{{$item['stock']}}</td>
                             <td>Rp. {{ number_format($item['price'], 0, ',', '.') }}</td>
                             </td>
                             <td class="d-flex justify-content-center">

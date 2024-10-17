@@ -18,6 +18,10 @@ class AccessoriesController extends Controller
         $aksesoris = Aksesoris::where('name', 'LIKE', '%' . $request->cari . '%')->simplePaginate(5)->appends($request->all());
         // compact() -> mengirimkan data ($) agar data $nya bisa dipake di blade
         return view('pages.produk_aksesoris', compact('aksesoris'));
+
+        $aksesoris = Aksesoris::paginate(10); 
+        return view('produk_aksesoris.index', compact('aksesoris'));
+    
     }
 
     /**
@@ -79,19 +83,16 @@ class AccessoriesController extends Controller
         return redirect()->route('produk_aksesoris.data')->with('success', 'Berhasil Mengedit Data Obat!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy($id)
     {
-        // Cari item berdasarkan ID dan hapus
         $item = Aksesoris::find($id);
+
         if ($item) {
             $item->delete();
-            return redirect()->route('produk_aksesoris.data')->with('success', 'Item berhasil dihapus.');
+            return redirect()->route('produk_aksesoris.index')->with('success', 'Item berhasil dihapus.');
         }
-        return redirect()->route('produk_aksesoris.data')->with('error', 'Item tidak ditemukan.');
+
+        return redirect()->route('produk_aksesoris.index')->with('error', 'Item tidak ditemukan.');
     }
-
-
 }

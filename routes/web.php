@@ -38,9 +38,11 @@ Route::prefix('/produk')->name('produk_aksesoris.')->group(function(){
     Route::post('/tambah/proses', [AccessoriesController::class, 'store'])->name('tambah.proses');
     Route::get('/ubah/{id}', [AccessoriesController::class, 'edit'])->name('ubah');
     Route::patch('ubah/{id}proses', [AccessoriesController::class, 'update'])->name('ubah.proses');
-    Route::delete('/accessories/{id}', [AccessoriesController::class, 'destroy'])->name('accessories.hapus');
 
 });
+
+Route::get('/produk_aksesoris', [AccessoriesController::class, 'index'])->name('produk_aksesoris.index');
+Route::delete('/produk_aksesoris/{id}', [AccessoriesController::class, 'destroy'])->name('produk_aksesoris.hapus');
 
 Route::prefix('/kelola_akun')->name('kelola_akun.')->group(function(){
     Route::get('/data', [UserController::class, 'index'])->name('data');
